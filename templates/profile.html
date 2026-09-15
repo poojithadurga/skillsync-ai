@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SkillSync AI</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6fb;
+            margin: 0;
+            padding: 30px;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #352c91;
+        }
+
+        p {
+            text-align: center;
+            color: #666;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 6px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+
+        textarea {
+            height: 70px;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 25px;
+            padding: 12px;
+            background: #352c91;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>SkillSync AI</h1>
+    <p>Student Profile & Skill Assessment</p>
+
+    <form method="POST">
+
+        <label>Student Name</label>
+        <input type="text" name="name" placeholder="Enter your name" required>
+
+        <label>Degree</label>
+        <input type="text" name="degree" placeholder="Example: B.Tech" required>
+
+        <label>Branch</label>
+        <input type="text" name="branch" placeholder="Example: Computer Science" required>
+
+        <label>CGPA</label>
+        <input type="number" step="0.01" name="cgpa" placeholder="Enter CGPA" required>
+
+        <label>Technical Skills</label>
+        <textarea name="technical_skills" placeholder="Example: Python, SQL, Excel"></textarea>
+
+        <label>Soft Skills</label>
+        <textarea name="soft_skills" placeholder="Example: Communication, Teamwork"></textarea>
+
+        <label>Certifications</label>
+        <textarea name="certifications" placeholder="Enter certifications"></textarea>
+
+        <label>Projects</label>
+        <textarea name="projects" placeholder="Enter projects"></textarea>
+
+        <label>Interests</label>
+        <textarea name="interests" placeholder="Example: AI, Data Science"></textarea>
+
+        <label>Target Career</label>
+        <select name="target_career" required>
+    <option value="">Select Career</option>
+    <option>Data Analyst</option>
+    <option>Data Scientist</option>
+    <option>Software Developer</option>
+    <option>Web Developer</option>
+    <option>Machine Learning Engineer</option>
+    <option>AI Engineer</option>
+    <option>Cybersecurity Analyst</option>
+    <option>Cloud Engineer</option>
+    <option>DevOps Engineer</option>
+    <option>Full Stack Developer</option>
+    <option>Computer Vision Engineer</option>
+    <option>Generative AI Engineer</option>
+    <option>Business Analyst</option>
+    <option>Network Engineer</option>
+    <option>UI/UX Designer</option>
+</select>
+        <button type="submit">Create Profile</button>
+
+    </form>
+
+</div>
+
+</body>
+</html>

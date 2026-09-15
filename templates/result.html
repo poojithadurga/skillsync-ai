@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SkillSync AI - Results</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6fb;
+            padding: 30px;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #352c91;
+        }
+
+        h2 {
+            color: #352c91;
+        }
+
+        .score {
+            text-align: center;
+            font-size: 45px;
+            font-weight: bold;
+            margin: 20px;
+        }
+
+        .box {
+            padding: 15px;
+            margin: 10px 0;
+            background: #f4f6fb;
+            border-radius: 8px;
+        }
+
+        .recommendation {
+            padding: 15px;
+            margin: 10px 0;
+            background: #f4f6fb;
+            border-radius: 8px;
+        }
+
+        .back {
+            display: block;
+            text-align: center;
+            margin-top: 25px;
+            color: #352c91;
+            font-weight: bold;
+        }
+        .live-link {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 10px 15px;
+    background: #352c91;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: bold;
+}
+
+    .resource-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 12px;
+    }
+
+    .resource-button {
+        display: inline-block;
+        padding: 8px 12px;
+        background: #ffffff;
+        color: #352c91;
+        border: 1px solid #352c91;
+        text-decoration: none;
+        border-radius: 6px;
+        font-weight: bold;
+        font-size: 13px;
+    }
+
+    .resource-note {
+        margin-top: 10px;
+        color: #666;
+        font-size: 13px;
+    }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>SkillSync AI</h1>
+
+    <h2>Hello, {{ name }} 👋</h2>
+
+    <p>Target Career: <strong>{{ career }}</strong></p>
+
+    <div class="score">
+        {{ score }} / 100
+    </div>
+
+    <h2>Career Readiness Score</h2>
+
+    <h3>✅ Matched Skills</h3>
+
+    {% for skill in matched_skills %}
+        <div class="box">✓ {{ skill }}</div>
+    {% endfor %}
+
+
+    <h3>❌ Missing Skills</h3>
+
+    {% for skill in missing_skills %}
+        <div class="box">✗ {{ skill }}</div>
+    {% endfor %}
+    
+
+
+    <h2>💡 Personalized Recommendations</h2>
+
+    {% for item in recommendations %}
+    <div class="recommendation">
+
+        <h3>🎯 {{ item.skill }}</h3>
+
+        <p>
+    <strong>📚 Learning Resource:</strong>
+    {{ item.course }}
+</p>
+
+{% if item.resource_links %}
+    <div class="resource-buttons">
+        {% if item.resource_links.learn %}
+        <a class="resource-button" href="{{ item.resource_links.learn }}" target="_blank">📚 Learn</a>
+        {% endif %}
+        {% if item.resource_links.certification %}
+        <a class="resource-button" href="{{ item.resource_links.certification }}" target="_blank">🏆 Certification</a>
+        {% endif %}
+        {% if item.resource_links.project %}
+        <a class="resource-button" href="{{ item.resource_links.project }}" target="_blank">🛠️ Project Ideas</a>
+        {% endif %}
+    </div>
+    <p class="resource-note">Curated learning links are provided first; use live search for additional options.</p>
+{% endif %}
+
+{% if item.search_url %}
+    <p>
+    <a class="live-link" href="{{ item.search_url }}" target="_blank">
+        🔗 Explore Live Learning Resources →
+    </a>
+</p>
+{% endif %}
+
+        <p>
+            <strong>🛠️ Recommended Project:</strong>
+            {{ item.project }}
+        </p>
+
+        <p>
+            <strong>🏆 Certification:</strong>
+            {{ item.certification }}
+        </p>
+
+        <p>
+            <strong>📈 Difficulty:</strong>
+            {{ item.level }}
+        </p>
+
+    </div>
+{% endfor %}
+
+
+    <a class="back" href="/">← Back to Profile</a>
+
+</div>
+<div style="text-align: center; margin: 30px 0;">
+
+    <a
+        href="/dashboard"
+        style="
+            display: inline-block;
+            background: #352c91;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+        "
+    >
+        📊 Go to Dashboard
+    </a>
+
+</div>
+
+</body>
+</html>

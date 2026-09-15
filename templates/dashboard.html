@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SkillSync AI - Dashboard</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6fb;
+            color: #222;
+        }
+
+        /* HEADER */
+
+        .header {
+            background: linear-gradient(135deg, #352c91, #5a4fcf);
+            color: white;
+            padding: 25px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo {
+            width: 50px;
+            height: 50px;
+            background: white;
+            color: #352c91;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+        }
+
+        .header h1 {
+            font-size: 28px;
+        }
+
+        .header p {
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        .dashboard-label {
+            background: rgba(255,255,255,0.15);
+            padding: 10px 18px;
+            border-radius: 20px;
+        }
+
+        /* MAIN */
+
+        .container {
+            width: 90%;
+            max-width: 1150px;
+            margin: 35px auto;
+        }
+
+        /* WELCOME */
+
+        .welcome {
+            background: white;
+            padding: 28px;
+            border-radius: 16px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+            border-left: 5px solid #352c91;
+        }
+
+        .welcome h2 {
+            color: #352c91;
+            margin-bottom: 10px;
+        }
+
+        .welcome p {
+            color: #555;
+            line-height: 1.7;
+        }
+
+        /* CARDS */
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 22px;
+            margin-bottom: 25px;
+        }
+
+        .card {
+            background: white;
+            padding: 28px;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+        }
+
+        .card h3 {
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .score,
+        .number {
+            font-size: 40px;
+            font-weight: bold;
+            color: #352c91;
+        }
+
+        /* SKILL PROGRESS */
+
+        .skill-progress {
+            background: white;
+            padding: 28px;
+            border-radius: 16px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+        }
+
+        .skill-progress h2 {
+            color: #352c91;
+            margin-bottom: 8px;
+        }
+
+        .skill-description {
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .skill-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 16px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            background: #f7f7fb;
+            border: 1px solid #e5e5ec;
+        }
+
+        .skill-name {
+            font-weight: bold;
+        }
+
+        .completed {
+            color: #218838;
+            font-weight: bold;
+        }
+
+        .pending {
+            color: #d97706;
+            font-weight: bold;
+        }
+
+        /* TWO COLUMNS */
+
+        .skills-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 22px;
+            margin-bottom: 25px;
+        }
+
+        .skills-box {
+            background: white;
+            padding: 25px;
+            border-radius: 16px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+        }
+
+        .skills-box h2 {
+            color: #352c91;
+            margin-bottom: 18px;
+        }
+
+        .skills-box ul {
+            list-style: none;
+        }
+
+        .skills-box li {
+            background: #f5f5fb;
+            padding: 12px 15px;
+            margin-bottom: 9px;
+            border-radius: 8px;
+        }
+
+        /* CAREER PROGRESS */
+
+        .progress-box {
+            background: white;
+            padding: 28px;
+            border-radius: 16px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+        }
+
+        .progress-box h2 {
+            color: #352c91;
+            margin-bottom: 10px;
+        }
+
+        .progress-text {
+            color: #555;
+            margin-bottom: 18px;
+        }
+
+        .progress-background {
+            background: #e5e5ec;
+            border-radius: 20px;
+            height: 30px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            background: linear-gradient(90deg,#352c91,#6d63d9);
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        /* NEXT STEP */
+
+        .next-step {
+            background: linear-gradient(135deg,#352c91,#5a4fcf);
+            color: white;
+            padding: 28px;
+            border-radius: 16px;
+            margin-bottom: 25px;
+        }
+
+        .next-step h2 {
+            margin-bottom: 10px;
+        }
+
+        .next-step p {
+            line-height: 1.7;
+        }
+
+        /* RECOMMENDATIONS */
+
+        .recommendations {
+            background: white;
+            padding: 28px;
+            border-radius: 16px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+        }
+
+        .recommendations > h2 {
+            color: #352c91;
+            margin-bottom: 22px;
+        }
+
+        .recommendation {
+            background: #fafaff;
+            border: 1px solid #e2e2e8;
+            padding: 22px;
+            margin-bottom: 16px;
+            border-radius: 12px;
+        }
+
+        .recommendation h3 {
+            color: #352c91;
+            margin-bottom: 14px;
+        }
+
+        .recommendation p {
+            color: #555;
+            margin-bottom: 9px;
+            line-height: 1.5;
+        }
+
+        /* BUTTON */
+
+        .live-link {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 10px 15px;
+    background: #352c91;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: bold;
+}
+
+
+
+        .complete-button {
+            display: inline-block;
+            margin-top: 12px;
+            padding: 11px 18px;
+            background: #352c91;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        .complete-button:hover {
+            background: #241d70;
+        }
+
+        /* EMPTY */
+
+        .no-recommendations {
+            background: #f5f5fb;
+            padding: 18px;
+            border-radius: 10px;
+            color: #555;
+        }
+
+        /* FOOTER */
+
+        .footer {
+            text-align: center;
+            padding: 25px;
+            color: #777;
+            font-size: 13px;
+        }
+
+        /* MOBILE */
+
+        @media(max-width:768px) {
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .skills-container {
+                grid-template-columns: 1fr;
+            }
+
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+                padding: 20px;
+            }
+
+            .container {
+                width: 94%;
+            }
+
+        }
+
+    
+        .resource-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .resource-button {
+            display: inline-block;
+            padding: 8px 12px;
+            background: white;
+            color: #352c91;
+            border: 1px solid #352c91;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 13px;
+        }
+
+        .resource-note {
+            margin-top: 10px;
+            color: #666;
+            font-size: 13px;
+        }
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- HEADER -->
+
+<div class="header">
+
+    <div class="brand">
+
+        <div class="logo">
+            🤖
+        </div>
+
+        <div>
+
+            <h1>SkillSync AI</h1>
+
+            <p>
+                AI-Powered Student Career Readiness Platform
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="dashboard-label">
+        📊 Dashboard
+    </div>
+
+</div>
+
+
+<div class="container">
+
+
+<!-- WELCOME -->
+
+<div class="welcome">
+
+    <h2>
+        👋 Welcome, {{ name }}!
+    </h2>
+
+    <p>
+        Your selected career is
+        <strong>{{ target_career }}</strong>.
+    </p>
+
+    <p>
+        SkillSync AI analyzes your current skills and
+        identifies the skills required to improve your
+        career readiness.
+    </p>
+
+</div>
+
+
+<!-- SUMMARY CARDS -->
+
+<div class="cards">
+
+    <div class="card">
+
+        <h3>🎯 Career Readiness</h3>
+
+        <div class="score">
+            {{ readiness_score }}%
+        </div>
+
+    </div>
+
+
+    <div class="card">
+
+        <h3>✅ Matched Skills</h3>
+
+        <div class="number">
+            {{ matched_count }}
+        </div>
+
+    </div>
+
+
+    <div class="card">
+
+        <h3>📚 Skills to Improve</h3>
+
+        <div class="number">
+            {{ improve_count }}
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ================= SKILL PROGRESS ================= -->
+
+<div class="skill-progress">
+
+    <h2>📊 Skill Progress Analysis</h2>
+
+    <p class="skill-description">
+        Your skills compared with the requirements for
+        <strong>{{ target_career }}</strong>.
+    </p>
+
+
+    {% for skill in matched_skills %}
+
+    <div class="skill-item">
+
+        <span class="skill-name">
+            {{ skill }}
+        </span>
+
+        <span class="completed">
+            ✅ Completed
+        </span>
+
+    </div>
+
+    {% endfor %}
+
+
+    {% for skill in missing_skills %}
+
+    <div class="skill-item">
+
+        <span class="skill-name">
+            {{ skill }}
+        </span>
+
+        <span class="pending">
+            📌 Needs Improvement
+        </span>
+
+    </div>
+
+    {% endfor %}
+
+
+    {% if not matched_skills and not missing_skills %}
+
+    <p>
+        No skill information available.
+    </p>
+
+    {% endif %}
+
+</div>
+
+
+<!-- ================= MATCHED / MISSING ================= -->
+
+<div class="skills-container">
+
+
+    <div class="skills-box">
+
+        <h2>
+            ✅ Your Matched Skills
+        </h2>
+
+        {% if matched_skills %}
+
+        <ul>
+
+            {% for skill in matched_skills %}
+
+            <li>
+                ✅ {{ skill }}
+            </li>
+
+            {% endfor %}
+
+        </ul>
+
+        {% else %}
+
+        <p>
+            No matched skills yet.
+        </p>
+
+        {% endif %}
+
+    </div>
+
+
+    <div class="skills-box">
+
+        <h2>
+            📌 Skills to Improve
+        </h2>
+
+        {% if missing_skills %}
+
+        <ul>
+
+            {% for skill in missing_skills %}
+
+            <li>
+                📌 {{ skill }}
+            </li>
+
+            {% endfor %}
+
+        </ul>
+
+        {% else %}
+
+        <p>
+            🎉 You have completed all required skills!
+        </p>
+
+        {% endif %}
+
+    </div>
+
+
+</div>
+
+
+<!-- ================= CAREER PROGRESS ================= -->
+
+<div class="progress-box">
+
+    <h2>
+        📈 Career Progress
+    </h2>
+
+    <p class="progress-text">
+
+        You have completed
+
+        <strong>{{ matched_count }}</strong>
+
+        out of
+
+        <strong>
+            {{ matched_count + improve_count }}
+        </strong>
+
+        required skills.
+
+    </p>
+
+
+    <div class="progress-background">
+
+        <div
+            class="progress-bar"
+            id="progressBar"
+            data-score="{{ readiness_score }}"
+        >
+
+            {{ readiness_score }}%
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ================= NEXT STEP ================= -->
+
+<div class="next-step">
+
+    <h2>
+        🚀 Next Step
+    </h2>
+
+    {% if missing_skills %}
+
+    <p>
+
+        Focus on the skills marked as
+        <strong>Needs Improvement</strong>.
+
+        Use the personalized recommendations below
+        to improve your career readiness.
+
+    </p>
+
+    {% else %}
+
+    <p>
+
+        🎉 Excellent!
+
+        You have completed all the required skills
+        for your selected career.
+
+    </p>
+
+    {% endif %}
+
+</div>
+
+
+<!-- ================= RECOMMENDATIONS ================= -->
+
+<div class="recommendations">
+
+    <h2>
+        🎓 Personalized Career Recommendations
+    </h2>
+
+    <p style="color: #666; margin-bottom: 20px; line-height: 1.6;">
+        These recommendations are based on the skills you need to improve
+        for your selected career: <strong>{{ target_career }}</strong>.
+    </p>
+
+    {% if recommendations %}
+
+        {% for item in recommendations %}
+
+        <div class="recommendation">
+
+            <h3>
+                🎯 {{ item.skill }}
+            </h3>
+
+            <div style="margin-top: 15px;">
+
+                <p>
+                    📚 <strong>What to Learn:</strong>
+                    {{ item.course }}
+                </p>
+
+                <p>
+                    🛠️ <strong>Practice Project:</strong>
+                    {{ item.project }}
+                </p>
+
+                <p>
+                    🏆 <strong>Recommended Certification:</strong>
+                    {{ item.certification }}
+                </p>
+
+                <p>
+                    📈 <strong>Difficulty:</strong>
+                    {{ item.level }}
+                </p>
+
+                {% if item.resource_links %}
+                    <div class="resource-buttons">
+                        {% if item.resource_links.learn %}
+                        <a class="resource-button" href="{{ item.resource_links.learn }}" target="_blank">📚 Learn</a>
+                        {% endif %}
+                        {% if item.resource_links.certification %}
+                        <a class="resource-button" href="{{ item.resource_links.certification }}" target="_blank">🏆 Certification</a>
+                        {% endif %}
+                        {% if item.resource_links.project %}
+                        <a class="resource-button" href="{{ item.resource_links.project }}" target="_blank">🛠️ Project Ideas</a>
+                        {% endif %}
+                    </div>
+                    <p class="resource-note">Curated learning links are provided first; use live search for additional options.</p>
+                {% endif %}
+
+                {% if item.search_url %}
+                    <p>
+                        <a class="live-link" href="{{ item.search_url }}" target="_blank">
+                            🔗 Explore Live Learning Resources →
+        </a>
+    </p>
+{% endif %}
+
+            </div>
+
+            <div style="
+                margin-top: 18px;
+                padding: 12px;
+                background: #f1f0ff;
+                border-radius: 8px;
+                color: #352c91;
+                font-size: 14px;
+            ">
+
+                💡 <strong>Why this matters:</strong>
+                Improving {{ item.skill }} can help you become
+                more prepared for {{ target_career }}.
+
+            </div>
+
+            <a
+                href="/complete/{{ item.skill }}"
+                class="complete-button"
+            >
+                ✅ Mark as Completed
+            </a>
+
+        </div>
+
+        {% endfor %}
+
+    {% else %}
+
+        <div class="no-recommendations">
+
+            <p>
+                🎉 Excellent! You have completed all the
+                recommended skills for {{ target_career }}.
+            </p>
+
+        </div>
+
+    {% endif %}
+
+</div>
+
+
+<!-- FOOTER -->
+
+<div class="footer">
+
+    SkillSync AI © 2026 |
+    Personalized Career Readiness
+
+</div>
+
+
+<!-- PROGRESS BAR SCRIPT -->
+
+<script>
+
+    const progressBar =
+        document.getElementById("progressBar");
+
+    if (progressBar) {
+
+        const score =
+            progressBar.getAttribute("data-score");
+
+        progressBar.style.width =
+            score + "%";
+
+    }
+
+</script>
+
+
+</body>
+
+</html>
